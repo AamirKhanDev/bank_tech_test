@@ -132,3 +132,11 @@ withdrawal.date # => "20/09/2022"
 const withdrawal = new Withdrawal("20/09/2022",1000)
 withdrawal.amount # => 1000.00
 ```
+
+## Edge cases
+```
+If date is not string
+If amount if not integer
+If customer tries to withdraw money that’s more than what's in their current account
+If customer tries to addToAccount anything that’s not a Deposit or Withdrawal instance
+```
