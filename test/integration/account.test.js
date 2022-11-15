@@ -66,6 +66,19 @@ describe("account", () => {
     const withdrawal = new Withdrawal(789, 1000)
     const account = new Account()
     expect(account.addToAccount(withdrawal)).toEqual("Unrecognised transaction type")
-  })
+  });
+
+  it("returns 'unrecognised transaction type' if amount of withdrawal transaction added is not a number", () => {
+    const withdrawal = new Withdrawal("20/09/2022","1000.00")
+    const account = new Account()
+    expect(account.addToAccount(withdrawal)).toEqual("Unrecognised transaction type")
+  });
+
+  it("returns 'unrecognised transaction type' if amount of deposit transaction added is not a number", () => {
+    const deposit = new Deposit("20/09/2022","1000.00")
+    const account = new Account()
+    expect(account.addToAccount(deposit)).toEqual("Unrecognised transaction type")
+  });
+
 })
 

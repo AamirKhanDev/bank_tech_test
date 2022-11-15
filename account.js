@@ -6,7 +6,7 @@ class Account {
     this.balance = 0.00
   }
   addToAccount(transaction) {
-    if (typeof transaction.date === "string") {
+    if (typeof transaction.date === "string" && typeof transaction.amount === "number") {
       this.account.push(transaction)
     } else {
       return "Unrecognised transaction type"
