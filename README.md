@@ -70,16 +70,23 @@ date || credit || debit || balance
 ## Design of their interfaces
 ```
 class Deposit {
-  constructor(date, amount) {     //date is a string, amount is an integer
-    this.date = date
+   //date is a string, amount is an integer
+  constructor(amount) {
+    this.transactionType = "DEPOSIT"
+    this.date = new Date().toLocaleString().split(',')[0]
     this.amount = amount
+    this.resultingAmount
   }
 }
 class Withdrawal {
-  constructor(date, amount) {     //date is a string, amount is an integer
-    this.date = date
+   //date is a string, amount is an integer
+  constructor(amount) {
+    this.transactionType = "WITHDRAWAL"
+    this.date = new Date().toLocaleString().split(',')[0]
     this.amount = amount
+    this.resultingAmount
   }
+  
 }
 class Account {
   constructor() {
@@ -99,7 +106,7 @@ class Account {
 #### adds deposit to account
 
 ```
-const deposit = new Deposit("15/11/2022",1000)
+const deposit = new Deposit(1000)
 const account = new account()
 account.addToAccount(deposit)
 account.account # => [deposit]
@@ -108,7 +115,7 @@ account.account # => [deposit]
 #### adds withdrawal to account
 
 ```
-const withdrawal = new Withdrawal("16/11/2022",500)
+const withdrawal = new Withdrawal(1000)
 const account = new account()
 account.addToAccount(withdrawal)
 account.account # => [withdrawal]
@@ -116,25 +123,16 @@ account.account # => [withdrawal]
 
 #### adds a deposit to the account and returns balance
 ```
-const deposit = new Deposit("15/11/2022",1000)
+const deposit = new Deposit(1000)
 const account = new account()
 account.addToAccount(deposit)
 account.balance # => 1000.00
 ```
-#### adds a deposit to the account and returns statement
-```
-const deposit = new Deposit("15/11/2022",1000)
-const account = new account()
-account.addToAccount(deposit)
-account.statement # =>
-date || credit || debit || balance
-15/11/2022 || 1000.00 || || 1000.00
-```
 #### returns the balance after adding a deposit to the account, and withdrawal from the account
 
 ```
-const deposit = new Deposit("15/11/2022",1000)
-const withdrawal = new Withdrawal("16/11/2022",500)
+const deposit = new Deposit(1000)
+const withdrawal = new Withdrawal(500)
 const account1 = new account()
 account.addToAccount(deposit)
 account.addToAccount(withdrawal)
@@ -143,41 +141,42 @@ account.balance # => 500
 ```
 #### returns the statement after adding a deposit to the account, and withdrawal from the account
 ```
-const deposit = new Deposit("15/11/2022",1000)
-const withdrawal = new Withdrawal("16/11/2022",500)
+const deposit = new Deposit(1000)
+const withdrawal = new Withdrawal(1000)
 const account1 = new account()
 account.addToAccount(deposit)
 account.addToAccount(withdrawal)
 account.statment # =>
 date || credit || debit || balance
-15/11/2022 || || 1000.00 || 0
-15/11/2022 || 500.00 || || 500.00
+20/09/2022 || || 1000.00 || 0
+20/09/2022 || 1000.00 || || 1000.00
 ```
 ## Examples of Unit tests
 #### returns date of deposit
 ```
-const deposit = new Deposit("15/11/2022",1000)
-deposit.date # => "15/11/2022"
+const deposit = new Deposit(1000)
+let date = new Date().toLocaleString().split(',')[0]
+deposit.date # => `${date}`
 ```
 #### returns amount of deposit
 ```
-const deposit = new Deposit("15/11/2022",1000)
+const deposit = new Deposit(1000)
 deposit.amount # => 1000.00
 ```
 #### returns date of withdrawal
 ```
-const withdrawal = new Withdrawal("15/11/2022",1000)
-withdrawal.date # => "15/11/2022"
+const withdrawal = new Withdrawal(1000)
+let date = new Date().toLocaleString().split(',')[0]
+withdrawal.date # =>  `${date}`
 ```
 #### returns amount of withdrawal
 ```
-const withdrawal = new Withdrawal("15/11/2022",1000)
+const withdrawal = new Withdrawal(1000)
 withdrawal.amount # => 1000.00
 ```
 
 ## Edge cases
 ```
-- If customer tries to add a transaction where the date is not string
-- If customer tries to add a transaction where the amount is not a number
+- If customer tries to add a transaction i.e. Deposit and Withdrawal, where the amount is not a number
 - If customer tries to withdraw money that’s more than what's in their current account
 ```
