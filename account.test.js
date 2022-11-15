@@ -17,4 +17,11 @@ describe("account", () => {
    expect(account.account).toEqual([withdrawal])
   });
 
+  it("shows balance after adding deposit", () => {
+    const deposit = new Deposit("15/11/2022", 1000)
+    const account = new Account()
+    account.addToAccount(deposit)
+    expect(account.balance()).toEqual(1000)
+  })
+
 });

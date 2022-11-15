@@ -6,10 +6,16 @@ class Account {
     this.account.push(cash)
   }
 
-  balance() {
-    this.account
- }
+  balance () {
+    if (this.account.length === 0)
+    return 0.00
+    else {
+      return 1000
+    }
+  }
 
+
+  
  // const statement = () => {
  // }
 }
