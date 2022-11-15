@@ -8,14 +8,14 @@ All transactions i.e. Deposit and Withdrawals, are stored within the Account's l
 Within the account object, you can add transaction to account and be able to view your current balance and statement.
 ### To run
 
-- Clone this repository git clone https://github.com/SophLewDev/bank-tech-test.
+- Clone this repository git clone https://github.com/AamirKhanDev/bank_tech_test.
 - Open node in the terminal (ensure you have node installed).
 - Install dependancies `npm install`.
 - Run tests via `jest`
 - Create an account let account = new Account;.
 - Create a Deposit and/or Withdrawal object:  
-  `let deposit = new Deposit("21/09/2022",1000)`  
-  `let withdrawal = new Withdrawal("21/09/2022",500)`.
+  `let deposit = new Deposit("15/11/2022", 1000)`  
+  `let withdrawal = new Withdrawal("16/11/2022", 500)`.
 - Get your current account balance printed to the console using account.getBalance().
 - Get your current account statement printed to the console using account.getStatement().
 ## Specification
