@@ -45,7 +45,7 @@ date || credit || debit || balance
          └─────────────────┘                 └─────────────────┘
 
 ## Design of their interfaces
-
+```
 class Deposit {
   constructor(date, amount) {     //date is a string, amount is an integer
     this.date = date
@@ -69,4 +69,42 @@ class Account {
   const statement = () => {
   }
 }
+```
+
+## Examples of Integration tests
+#### adds a deposit to the account and returns balance
+```
+const deposit = new Deposit("20/09/2022",1000)
+const account = new account()
+account.addToAccount(deposit)
+account.balance # => 1000.00
+```
+#### adds a deposit to the account and returns statement
+```
+const deposit = new Deposit("20/09/2022",1000)
+const account = new account()
+account.addToAccount(deposit)
+account.statement # =>
+date || credit || debit || balance
+20/09/2022 || 1000.00 || || 1000.00
+```
+#### returns the balance after adding a deposit to the account, and withdrawel from the account
+
+```
+const deposit = new Deposit("20/09/2022",1000)
+const withdrawal = new Withdrawal("20/09/2022",1000)
+const account1 = new account()
+account.addToAccount(deposit)
+account.addToAccount(withdrawal)
+	@@ -123,7 +123,7 @@ account.balance # => 0
+
+```
+const deposit = new Deposit("20/09/2022",1000)
+const withdrawal = new Withdrawal("20/09/2022",1000)
+const account1 = new account()
+account.addToAccount(deposit)
+account.addToAccount(withdrawal)
+	@@ -162,3 +162,7 @@ withdrawal.date # => "20/09/2022"
+const withdrawal = new Withdrawal("20/09/2022",1000)
+withdrawal.amount # => 1000.00
 ```
