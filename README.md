@@ -30,7 +30,7 @@ Within the account object, you can add transaction to account and be able to vie
 **Given** a client makes a deposit of 1000 on 10-01-2023  
 **And** a deposit of 2000 on 13-01-2023  
 **And** a withdrawal of 500 on 14-01-2023  
-**When** he/she prints her bank statement  
+**When** he/she prints their bank statement  
 **Then** he/she would see
 ```
 date || credit || debit || balance
