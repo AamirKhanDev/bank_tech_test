@@ -184,7 +184,6 @@ withdrawal.amount # => 1000.00
 ```
 
 ## Edge cases
-```
+
 - If customer tries to add a transaction i.e. Deposit and Withdrawal, where the amount is not a number
 - If customer tries to withdraw money that’s more than what's in their current account
-```
