@@ -1,5 +1,6 @@
 const Account = require('./account')
 const Deposit = require('./deposit')
+const Withdrawal = require('./withdrawal')
 
 describe("account", () => {
   it("add funds to account and return the amount", () => {
@@ -8,4 +9,12 @@ describe("account", () => {
     account.addToAccount(deposit)
     expect(account.account).toEqual([deposit])
   });
+
+  it("withdraws from current balance and displays new balance", () => {
+    const withdrawal = new Withdrawal("16/11/2022", 500)
+    const account = new Account()
+    account.addToAccount(withdrawal)
+   expect(account.account).toEqual([withdrawal])
+  });
+
 });

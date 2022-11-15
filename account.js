@@ -6,8 +6,9 @@ class Account {
     this.account.push(cash)
   }
 
-  //const balance = () => {
- // }
+  balance() {
+    this.account
+ }
 
  // const statement = () => {
  // }

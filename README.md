@@ -85,7 +85,7 @@ account.account # => [deposit]
 #### adds withdrawal to account
 
 ```
-const withdrawal = new Withdrawal("15/11/2022",1000)
+const withdrawal = new Withdrawal("16/11/2022",500)
 const account = new account()
 account.addToAccount(withdrawal)
 account.account # => [withdrawal]
