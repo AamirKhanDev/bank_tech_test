@@ -26,8 +26,9 @@ class Account {
   }
 
 
- // const statement = () => {
- // }
+  getStatement() {
+    return "date || credit || debit || balance"
+  }
 }
 
 module.exports = Account;
