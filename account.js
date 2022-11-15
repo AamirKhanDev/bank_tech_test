@@ -6,7 +6,11 @@ class Account {
     this.balance = 0.00
   }
   addToAccount(transaction) {
-    this.account.push(transaction)
+    if (typeof transaction.date === "string") {
+      this.account.push(transaction)
+    } else {
+      return "Unrecognised transaction type"
+    }
   }
 
   calculate() {
@@ -41,7 +45,7 @@ class Account {
         debit = transaction.amount + " "
         this.balance -= transaction.amount
   }
-  
+
       statement += `${date} || ${credit}|| ${debit}|| ${this.balance} ||\n`
     })
     return statement

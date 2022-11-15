@@ -5,8 +5,8 @@ const Withdrawal = require('../../withdrawal')
 describe("account", () => {
   it("add deposit to account and return deposit", () => {
     const fakeDeposit = {
-      date:() => "15/11/2022",
-      amount:() => 1000
+      date: "15/11/2022",
+      amount: 1000
     }
     const account = new Account()
     account.addToAccount(fakeDeposit)
@@ -15,8 +15,8 @@ describe("account", () => {
 
   it("add withdrawal to account and return withdrawal", () => {
     const fakeWithdrawal = {
-      date:() => "16/11/2022",
-      amount:() => 1000
+      date: "16/11/2022",
+      amount: 1000
     }
     const account = new Account()
     account.addToAccount(fakeWithdrawal)
