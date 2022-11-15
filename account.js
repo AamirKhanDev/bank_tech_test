@@ -11,12 +11,14 @@ class Account {
 
   calculate() {
     this.account.map((transaction) => {
-      if (transaction instanceof Deposit) {
+      if (transaction.transactionType === "DEPOSIT") {
         this.balance += transaction.amount
-      } else {
+      } else if (transaction.transactionType === "WITHDRAWAL"){
         this.balance -= transaction.amount 
       }
-      console.log(this.balance)
+      else {
+        return "Unrecognised transaction type"
+      }
     })
   }
 
@@ -29,7 +31,7 @@ class Account {
   getStatement() {
     let statement  = "date || credit || debit || balance\n"
     this.account.map((transaction) => {
-      const date = transaction.date
+      let date = transaction.date
       let credit = "";
       let debit = "";
         if (transaction instanceof Deposit) {
