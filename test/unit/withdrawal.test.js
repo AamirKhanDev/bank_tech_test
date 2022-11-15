@@ -1,15 +1,15 @@
 const Withdrawal = require('../../withdrawal')
 
+describe("deposit", () => {
+  let date = new Date().toLocaleString().split(',')[0]
 
-describe("withdrawal", () => {
   it("returns date of withdrawal", () => {
-    const withdrawal = new Withdrawal("16/11/2022", 500)
-    expect(withdrawal.date).toEqual("16/11/2022")
+    const withdrawal = new Withdrawal(1000)
+    expect(withdrawal.date).toEqual(`${date}`)
   });
 
-  it("returns amount deposited", () => {
-    const withdrawal = new Withdrawal("16/11/2022", 500)
-    expect(withdrawal.amount).toEqual(500);
+  it("returns amount of withdrawal", () => {
+    const withdrawal = new Withdrawal(1000)
+    expect(withdrawal.amount).toEqual(1000.00)
   });
-
 });

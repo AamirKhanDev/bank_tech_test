@@ -13,7 +13,7 @@ class Account {
     }
     this.listOfTransactions.push(transaction)
     this._updateBalance(transaction)
-    transaction.resultingAmount = this.getBalance()
+    transaction.resultingAmount = parseFloat(this.getBalance()).toFixed(2)
   }
 
   getBalance() {
@@ -23,10 +23,9 @@ class Account {
   getStatement() {
     let statement  = "date || credit || debit || balance\n"
     this.listOfTransactions.map((transaction) => {
-      let credit = transaction.transactionType === "DEPOSIT" ? 
-        transaction.amount + " " : "";
-      let debit = transaction.transactionType === "WITHDRAWAL" ?
-        transaction.amount + " " : "";
+      const amount = parseFloat(transaction.amount).toFixed(2)
+      const credit = transaction.transactionType === "DEPOSIT" ? amount + " " : "";
+      const debit = transaction.transactionType === "WITHDRAWAL" ? amount + " " : "";
       statement += `${transaction.date} || ${credit}|| ${debit}|| ${transaction.resultingAmount}\n`
     })
     return statement
@@ -46,7 +45,7 @@ class Account {
   }
   
   _isTransactionPropertiesInvalid(transaction) {
-    return !(typeof transaction.date === "string" && typeof transaction.amount === "number")
+    return !(typeof transaction.amount === "number")
   }
 }
 

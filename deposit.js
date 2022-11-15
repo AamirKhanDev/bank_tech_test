@@ -1,9 +1,9 @@
 class Deposit {
-  constructor(date, amount){
+  constructor(amount) {
     this.transactionType = "DEPOSIT"
-    this.date = date
-    this.amount = amount;
-    
+    this.date = new Date().toLocaleString().split(',')[0]
+    this.amount = amount
+    this.resultingAmount
   }
 }
 
