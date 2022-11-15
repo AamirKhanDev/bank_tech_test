@@ -63,4 +63,32 @@ describe("account", () => {
     const account = new Account()
     expect(account.getStatement()).toEqual("date || credit || debit || balance\n")
   });
+
+  it("returns statement after adding a deposit to the account", () => {
+    const fakeDeposit = {
+      date: "15/11/2022",
+      amount: 1000,
+      transactionType: "DEPOSIT"
+    }
+    const account = new Account()
+    account.addToAccount(fakeDeposit)
+    expect(account.getStatement()).toEqual("date || credit || debit || balance\n15/11/2022 || 1000 || || 1000 ||\n")
+  });
+
+  it("returns statement after adding deposit and withdrawal", () => {
+    const fakeDeposit = {
+      date: "15/11/2022",
+      amount: 1000,
+      transactionType: "DEPOSIT"
+    }
+    const fakeWithdrawal = {
+      date: "16/11/2022",
+      amount: 500,
+      transactionType: "WITHDRAWAL"
+    }
+    const account = new Account()
+    account.addToAccount(fakeDeposit)
+    account.addToAccount(fakeWithdrawal)
+    expect(account.getStatement()).toEqual("date || credit || debit || balance\n15/11/2022 || 1000 || || 1000 ||\n16/11/2022 || || 500 || 500 ||\n")
+  })
 })
