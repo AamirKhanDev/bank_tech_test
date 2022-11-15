@@ -1,4 +1,4 @@
-const Withdrawal = require('../../withdrawal')
+const Withdrawal = require('../../src/withdrawal')
 
 describe("deposit", () => {
   let date = new Date().toLocaleString().split(',')[0]

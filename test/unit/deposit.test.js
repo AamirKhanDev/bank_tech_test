@@ -1,4 +1,4 @@
-const Deposit = require('../../deposit')
+const Deposit = require('../../src/deposit')
 
 describe("deposit", () => {
   let date = new Date().toLocaleString().split(',')[0]
