@@ -40,7 +40,11 @@ date || credit || debit || balance
 ```
 ## Demo
 
-[demo](./bank-tech-test-demo.png)
+<img
+  src="./bank-tech-test-demo.png"
+  alt="Alt Demo"
+  title="Demo"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
 
 
 ### Diagram of the class systems
