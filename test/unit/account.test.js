@@ -106,7 +106,7 @@ describe("account", () => {
       transactionType: "DEPOSIT"
     }
     const account = new Account()
-    exp;ect(account.addToAccount(fakeDeposit)).toEqual("Unrecognised transaction type")
+    expect(account.addToAccount(fakeDeposit)).toEqual("Unrecognised transaction type")
   });
 
   it("returns 'unrecognised transaction type' if amount of withdrawal transaction added is not a number", () => {
@@ -134,5 +134,5 @@ describe("account", () => {
     account.addToAccount(fakeDeposit)
     expect(account.addToAccount(fakeWithdrawal)).toEqual("Withdraw amount exceeds funds")
   });
-  
+
 })
