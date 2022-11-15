@@ -111,24 +111,24 @@ date || credit || debit || balance
 
 ```
 const deposit = new Deposit("15/11/2022",1000)
-const withdrawal = new Withdrawal("15/11/2022",1000)
+const withdrawal = new Withdrawal("16/11/2022",500)
 const account1 = new account()
 account.addToAccount(deposit)
 account.addToAccount(withdrawal)
-account.balance # => 0
+account.balance # => 500
 
 ```
-#### returns the statement after adding a deposit to the account, and withdrawel from the account
+#### returns the statement after adding a deposit to the account, and withdrawal from the account
 ```
 const deposit = new Deposit("15/11/2022",1000)
-const withdrawal = new Withdrawal("15/11/2022",1000)
+const withdrawal = new Withdrawal("16/11/2022",500)
 const account1 = new account()
 account.addToAccount(deposit)
 account.addToAccount(withdrawal)
 account.statment # =>
 date || credit || debit || balance
 15/11/2022 || || 1000.00 || 0
-15/11/2022 || 1000.00 || || 1000.00
+15/11/2022 || 500.00 || || 500.00
 ```
 ## Examples of Unit tests
 #### returns date of deposit
