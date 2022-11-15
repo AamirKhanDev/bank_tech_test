@@ -27,7 +27,22 @@ class Account {
 
 
   getStatement() {
-    return "date || credit || debit || balance"
+    let statement  = "date || credit || debit || balance\n"
+    this.account.map((transaction) => {
+      const date = transaction.date
+      let credit = "";
+      let debit = "";
+        if (transaction instanceof Deposit) {
+        credit = transaction.amount + " "
+        this.balance += transaction.amount
+      }
+      else {
+        debit = transaction.amount + " "
+        this.balance += transaction.amount * (-1)
+      }
+      statement += `${date} || ${credit}|| ${debit}|| ${this.balance} ||\n`
+    })
+    return statement
   }
 }
 
