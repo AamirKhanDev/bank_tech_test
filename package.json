@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/AamirKhanDev/bank_tech_test#readme",
   "devDependencies": {
+    "eslint": "^8.27.0",
     "jest": "^29.3.1"
   }
 }

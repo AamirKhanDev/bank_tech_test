@@ -14,7 +14,7 @@ class Account {
       if (transaction instanceof Deposit) {
         this.balance += transaction.amount
       } else {
-        this.balance += transaction.amount * (-1)
+        this.balance -= transaction.amount 
       }
       console.log(this.balance)
     })
@@ -38,7 +38,7 @@ class Account {
       }
       else {
         debit = transaction.amount + " "
-        this.balance += transaction.amount * (-1)
+        this.balance -= transaction.amount 
       }
       statement += `${date} || ${credit}|| ${debit}|| ${this.balance} ||\n`
     })

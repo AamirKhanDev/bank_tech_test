@@ -1,4 +1,4 @@
-const Withdrawal = require('./withdrawal')
+const Withdrawal = require('../../withdrawal')
 
 
 describe("withdrawal", () => {

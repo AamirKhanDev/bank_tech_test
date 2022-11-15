@@ -1,6 +1,6 @@
-const Account = require('./account')
-const Deposit = require('./deposit')
-const Withdrawal = require('./withdrawal')
+const Account = require('../../account')
+const Deposit = require('../../deposit')
+const Withdrawal = require('../../withdrawal')
 
 describe("account", () => {
   it("add funds to account and return the amount", () => {
@@ -40,10 +40,20 @@ describe("account", () => {
     expect(account.getStatement()).toEqual("date || credit || debit || balance\n")
   });
 
-  it("adds a deposit to the account and returns statement", () => {
+  it("returns statement after adding a deposit to the account", () => {
     const deposit = new Deposit("15/11/2022", 1000)
     const account = new Account()
     account.addToAccount(deposit)
     expect(account.getStatement()).toEqual("date || credit || debit || balance\n15/11/2022 || 1000 || || 1000 ||\n")
+  })
+
+  it("returns statement after adding deposit and withdrawal", () => {
+    const deposit = new Deposit("15/11/2022",1000)
+    const withdrawal = new Withdrawal("16/11/2022",500)
+    const account = new Account()
+    account.addToAccount(deposit)
+    account.addToAccount(withdrawal)
+    expect(account.getStatement()).toEqual("date || credit || debit || balance\n15/11/2022 || 1000 || || 1000 ||\n16/11/2022 || || 500 || 500 ||\n")
   });
 })
+

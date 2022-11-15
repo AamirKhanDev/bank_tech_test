@@ -1,4 +1,4 @@
-const Deposit = require('./deposit')
+const Deposit = require('../../deposit')
 
 
 describe("deposit", () => {
