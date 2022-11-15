@@ -1,5 +1,23 @@
 # Bank tech test
 
+## The Application
+
+This app logs deposits and withdrawals from a bank account and is to be used from within the JavaScript console.
+The Account object acts as the interface for the app.  
+All transactions i.e. Deposit and Withdrawals, are stored within the Account's list of transactions, with their transactions details stored as properties.  
+Within the account object, you can add transaction to account and be able to view your current balance and statement.
+### To run
+
+- Clone this repository git clone https://github.com/AamirKhanDev/bank_tech_test.
+- Open node in the terminal (ensure you have node installed).
+- Install dependancies `npm install`.
+- Run tests via `jest`
+- Create an account let account = new Account;.
+- Create a Deposit and/or Withdrawal object:  
+  `let deposit = new Deposit("15/11/2022", 1000)`  
+  `let withdrawal = new Withdrawal("16/11/2022", 500)`.
+- Get your current account balance printed to the console using account.getBalance().
+- Get your current account statement printed to the console using account.getStatement().
 ## Specification
 ### Requirements
 
@@ -12,7 +30,7 @@
 **Given** a client makes a deposit of 1000 on 10-01-2023  
 **And** a deposit of 2000 on 13-01-2023  
 **And** a withdrawal of 500 on 14-01-2023  
-**When** he/she prints her bank statement  
+**When** he/she prints their bank statement  
 **Then** he/she would see
 ```
 date || credit || debit || balance
@@ -22,28 +40,33 @@ date || credit || debit || balance
 ```
 ## Design
 ### Diagram of the class systems
-
-                           ┌──────────────────┐
-                           │ class Statement  │
-                           │                  │
-                           │ addToAccount     │
-                           │                  │
-                           │  balance         │
-                           │                  │
-                      ┌───►| statements       │◄──┐
-                      │    │                  │   │
-                      │    │                  │   │
-                      │    │                  │   │
-                      │    └──────────────────┘   │
-                      │                           │
-         ┌────────────┴────┐                 ┌────┴────────────┐
-         │ class Deposit   │                 │class Withdrawal │
-         │                 │                 │                 │
-         │ initialize      │                 │ initialize      │
-         │                 │                 │                 │
-         │                 │                 │                 │
-         └─────────────────┘                 └─────────────────┘
-
+                            ┌──────────────────┐
+                            │ class Account    │
+                            │                  │
+                            │ initialize:      │
+                            │listoftransactions|
+                            │balance           │
+                            │                  │
+                            │ addToAccount     │
+                       ┌───►| getBalance       │◄──┐
+                       │    │ getStatement     │   │
+                       │    │                  │   │
+                       │    │                  │   │
+                       │    └──────────────────┘   │
+                       │                           │
+          ┌────────────┴────┐                 ┌────┴────────────┐
+          │ class Deposit   │                 │class Withdrawal │
+          │                 │                 │                 │
+          │ initialize:     │                 │ initialize:     │
+          │                 │                 │                 │
+          │ transaction type│                 │ transaction type│
+          │ date            │                 │ date            │
+          │ amount          │                 │ amount          │
+          │ resulting amount│                 │ resulting amount│
+          │                 │                 │                 │
+          │                 │                 │                 │
+          └─────────────────┘                 └─────────────────┘
+          
 ## Design of their interfaces
 ```
 class Deposit {
