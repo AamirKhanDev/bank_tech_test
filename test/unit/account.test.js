@@ -40,4 +40,27 @@ describe("account", () => {
     account.calculate()
     expect(account.getBalance()).toEqual(1000.00)
   });
+
+  it("shows balance after deposit and withdrawal", () => {
+    const fakeDeposit = {
+      date: "15/11/2022",
+      amount: 1000,
+      transactionType: "DEPOSIT"
+    }
+    const fakeWithdrawal = {
+      date: "16/11/2022",
+      amount: 500,
+      transactionType: "WITHDRAWAL"
+    }
+    const account = new Account()
+    account.addToAccount(fakeDeposit)
+    account.addToAccount(fakeWithdrawal)
+    account.calculate()
+    expect(account.getBalance()).toEqual(500.00)
+  });
+
+  it("returns statement without any deposit or withdrawal", () => {
+    const account = new Account()
+    expect(account.getStatement()).toEqual("date || credit || debit || balance\n")
+  });
 })
