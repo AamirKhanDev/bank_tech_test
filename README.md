@@ -88,7 +88,7 @@ account.statement # =>
 date || credit || debit || balance
 20/09/2022 || 1000.00 || || 1000.00
 ```
-#### returns the balance after adding a deposit to the account, and withdrawel from the account
+#### returns the balance after adding a deposit to the account, and withdrawl from the account
 
 ```
 const deposit = new Deposit("20/09/2022",1000)
@@ -96,15 +96,39 @@ const withdrawal = new Withdrawal("20/09/2022",1000)
 const account1 = new account()
 account.addToAccount(deposit)
 account.addToAccount(withdrawal)
-	@@ -123,7 +123,7 @@ account.balance # => 0
+account.balance # => 0
 
+```
+#### returns the statement after adding a deposit to the account, and withdrawel from the account
 ```
 const deposit = new Deposit("20/09/2022",1000)
 const withdrawal = new Withdrawal("20/09/2022",1000)
 const account1 = new account()
 account.addToAccount(deposit)
 account.addToAccount(withdrawal)
-	@@ -162,3 +162,7 @@ withdrawal.date # => "20/09/2022"
+account.statment # =>
+date || credit || debit || balance
+20/09/2022 || || 1000.00 || 0
+20/09/2022 || 1000.00 || || 1000.00
+```
+## Examples of Unit tests
+#### returns date of deposit
+```
+const deposit = new Deposit("20/09/2022",1000)
+deposit.date # => "20/09/2022"
+```
+#### returns amount of deposit
+```
+const deposit = new Deposit("20/09/2022",1000)
+deposit.amount # => 1000.00
+```
+#### returns date of withdrawl
+```
+const withdrawal = new Withdrawal("20/09/2022",1000)
+withdrawal.date # => "20/09/2022"
+```
+#### returns amount of withdrawl
+```
 const withdrawal = new Withdrawal("20/09/2022",1000)
 withdrawal.amount # => 1000.00
 ```
