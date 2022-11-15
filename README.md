@@ -83,7 +83,7 @@ class Withdrawal {
 }
 class Account {
   constructor() {
-    this.account = []
+    this.listofTransactions = []
   }
   const addToAccount = () => {
   }
@@ -177,8 +177,7 @@ withdrawal.amount # => 1000.00
 
 ## Edge cases
 ```
-If date is not string
-If amount if not integer
-If customer tries to withdraw money that’s more than what's in their current account
-If customer tries to addToAccount anything that’s not a Deposit or Withdrawal instance
+- If customer tries to add a transaction where the date is not string
+- If customer tries to add a transaction where the amount is not a number
+- If customer tries to withdraw money that’s more than what's in their current account
 ```

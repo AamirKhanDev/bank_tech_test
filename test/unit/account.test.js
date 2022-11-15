@@ -1,26 +1,35 @@
 const Account = require('../../account')
-const Deposit = require('../../deposit')
+const Deposit = require('../..//deposit')
 const Withdrawal = require('../../withdrawal')
 
 describe("account", () => {
+
   it("add deposit to account and return deposit", () => {
     const fakeDeposit = {
+      transactionType: "DEPOSIT",
       date: "15/11/2022",
       amount: 1000
     }
     const account = new Account()
     account.addToAccount(fakeDeposit)
-    expect(account.account).toEqual([fakeDeposit])
+    expect(account.listOfTransactions).toEqual([fakeDeposit])
   });
 
   it("add withdrawal to account and return withdrawal", () => {
+    const fakeDeposit = {
+      transactionType: "DEPOSIT",
+      date: "15/11/2022",
+      amount: 1000
+    }
     const fakeWithdrawal = {
-      date: "16/11/2022",
+      transactionType: "WITHDRAWAL",
+      date: "15/11/2022",
       amount: 1000
     }
     const account = new Account()
+    account.addToAccount(fakeDeposit)
     account.addToAccount(fakeWithdrawal)
-    expect(account.account).toEqual([fakeWithdrawal])
+    expect(account.listOfTransactions).toEqual([fakeDeposit, fakeWithdrawal])
   });
 
   it("shows balance is 0 / empty", () => {
@@ -37,7 +46,6 @@ describe("account", () => {
     const account = new Account()
     account.addToAccount(fakeDeposit)
     console.log(account.account)
-    account.calculate()
     expect(account.getBalance()).toEqual(1000.00)
   });
 
@@ -48,14 +56,13 @@ describe("account", () => {
       transactionType: "DEPOSIT"
     }
     const fakeWithdrawal = {
-      date: "16/11/2022",
+      date: "15/11/2022",
       amount: 500,
       transactionType: "WITHDRAWAL"
     }
     const account = new Account()
     account.addToAccount(fakeDeposit)
     account.addToAccount(fakeWithdrawal)
-    account.calculate()
     expect(account.getBalance()).toEqual(500.00)
   });
 
@@ -72,7 +79,7 @@ describe("account", () => {
     }
     const account = new Account()
     account.addToAccount(fakeDeposit)
-    expect(account.getStatement()).toEqual("date || credit || debit || balance\n15/11/2022 || 1000 || || 1000 ||\n")
+    expect(account.getStatement()).toEqual("date || credit || debit || balance\n15/11/2022 || 1000 || || 1000\n")
   });
 
   it("returns statement after adding deposit and withdrawal", () => {
@@ -82,13 +89,70 @@ describe("account", () => {
       transactionType: "DEPOSIT"
     }
     const fakeWithdrawal = {
-      date: "16/11/2022",
+      date: "15/11/2022",
       amount: 500,
       transactionType: "WITHDRAWAL"
     }
     const account = new Account()
     account.addToAccount(fakeDeposit)
     account.addToAccount(fakeWithdrawal)
-    expect(account.getStatement()).toEqual("date || credit || debit || balance\n15/11/2022 || 1000 || || 1000 ||\n16/11/2022 || || 500 || 500 ||\n")
-  })
+    expect(account.getStatement()).toEqual("date || credit || debit || balance\n15/11/2022 || 1000 || || 1000\n15/11/2022 || || 500 || 500\n")
+  });
+
+  it("returns 'unrecognised transaction type' if date of deposit transaction added is not a string", () => {
+    const fakeDeposit = {
+      date: 789,
+      amount: 1000,
+      transactionType: "DEPOSIT"
+    }
+    const account = new Account()
+    expect(account.addToAccount(fakeDeposit)).toEqual("Unrecognised transaction type")
+  });
+
+  it("returns 'unrecognised transaction type' if date of withdrawal transaction added is not a string", () => {
+    const fakeWithdrawal = {
+      date: 789,
+      amount: 500,
+      transactionType: "WITHDRAWAL"
+    }
+    const account = new Account()
+    expect(account.addToAccount(fakeWithdrawal)).toEqual("Unrecognised transaction type")
+  });
+
+  it("returns 'unrecognised transaction type' if amount of deposit transaction added is not a number", () => {
+    const fakeDeposit = {
+      date: "15/11/2022",
+      amount: "1000",
+      transactionType: "DEPOSIT"
+    }
+    const account = new Account()
+    expect(account.addToAccount(fakeDeposit)).toEqual("Unrecognised transaction type")
+  });
+
+  it("returns 'unrecognised transaction type' if amount of withdrawal transaction added is not a number", () => {
+    const fakeWithdrawal = {
+      date: "15/11/2022",
+      amount: "500",
+      transactionType: "WITHDRAWAL"
+    }
+    const account = new Account()
+    expect(account.addToAccount(fakeWithdrawal)).toEqual("Unrecognised transaction type")
+  });
+
+  it("returns 'cannot add this transaction to account' if amount to withdraw is larger than the account's balance", () => {
+    const fakeDeposit = {
+      date: "15/11/2022",
+      amount: 500,
+      transactionType: "DEPOSIT"
+    }
+    const fakeWithdrawal = {
+      date: "15/11/2022",
+      amount: 1000,
+      transactionType: "WITHDRAWAL",
+    }
+    const account = new Account()
+    account.addToAccount(fakeDeposit)
+    expect(account.addToAccount(fakeWithdrawal)).toEqual("Withdraw amount exceeds funds")
+  });
+
 })
